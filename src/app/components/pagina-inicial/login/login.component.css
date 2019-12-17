@@ -1,0 +1,16 @@
+.login{
+  width:440px;
+  height:360px;
+  border:solid 1px rgba(0, 0, 0, 0.6);
+  border-radius:20px;
+  padding: 1em;
+  margin: 50px auto;
+}
+
+.header-div-login {
+  margin-bottom: 1em;
+}
+
+.footer-div-login {
+  margin-top: 1em;
+}

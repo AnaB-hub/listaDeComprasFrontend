@@ -1,0 +1,52 @@
+<div class="container principal">
+  <div class="alert {{classeMensagem}}" role="alert" *ngIf="mensagem && mensagem.length > 0">
+    {{ mensagem }}
+  </div>
+  <div class='main'>
+    <div class="container-fluid">
+      <div class="login">
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="header-div-login" style='text-align: center'>Faça seu Login!</h4>
+          </div>
+        </div>
+        <form [formGroup]="loginForm">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class='label-vol'>Usuário: </label>
+                <input class="form-control" id='usuário' placeholder="Usuário" formControlName="usuario"
+                  [ngClass]="'is-invalid'">
+                <div *ngIf="loginForm.get('usuario').hasError('required') && loginForm.get('usuario').touched"
+                  class="invalid-feedback">
+                  Usuário é obrigatório.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class='label-vol'>Senha:</label>
+                <input class="form-control" type="password" placeholder="Senha" formControlName="senha"
+                  [ngClass]="'is-invalid'">
+                <div *ngIf="loginForm.get('senha').hasError('required') && loginForm.get('senha').touched"
+                  class="invalid-feedback">
+                  Senha é obrigatória.
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>&nbsp;
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-dark" (click)="entrar()">
+              Entrar
+            </button>&nbsp;
+            <button type="submit" class="btn btn-secondary" (click)="limpar()">
+              Limpar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

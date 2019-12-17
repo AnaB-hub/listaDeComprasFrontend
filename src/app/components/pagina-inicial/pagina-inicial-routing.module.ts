@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,10 @@ const routes: Routes = [
   {
     path: 'pagina-inicial',
     component: PaginaInicialComponent
+  },
+  {
+    path: 'adm',
+    component: LoginComponent
   }
 ]
 
