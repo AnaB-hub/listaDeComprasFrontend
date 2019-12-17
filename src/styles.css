@@ -1,3 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+
+.principal {
+  padding: 10px;
+}
+
+.titulo {
+  text-align: center;
+}
+
+.pagina-inicial {
+  padding: 10px;
+  text-indent: 1.5em;
+}
+
+.botao {
+  text-align: right;
+}
+
+.descricao {
+  font-style: italic;
+}
+
+.sessao-categoria {
+  width: 80%;
+  height: 58%;
+  border:solid 1px rgba(0, 0, 0, 0.6);
+  border-radius:20px;
+  margin: 50px auto;
+}
+
+.inner {
+  padding: 10px;
+  margin: 0 auto;
+}
