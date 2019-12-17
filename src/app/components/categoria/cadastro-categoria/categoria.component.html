@@ -1,0 +1,37 @@
+<div class="container principal">
+  <div class="alert {{classeMensagem}}" role="alert" *ngIf="mensagem && mensagem.length > 0">
+    {{ mensagem }}
+  </div>
+  <h3 class="titulo">Categoria de produto</h3>
+  <div class="pagina-inicial descricao">
+    <p>Usuário, você pode sugerir categorias, caso não esteja satisfeito com as existentes no sistema.
+    Os administradores do sistema são responsáveis por aprovar ou não as sugestões.
+    Caso seja aprovada, em breve sua categoria será apresentada como um das opções.</p>
+    <p>Obrigada por colaborar com o SGLC!</p>
+  </div>
+  <div class="principal">
+    <form [formGroup]="cadastroForm">
+      <div class="row">
+        <div class="form-group col-lg-6">
+          <label>Nome da categoria</label>
+          <input class="form-control" type="text" placeholder="Nome da categoria" formControlName="nome"
+            [ngClass]="{'is-invalid': cadastroForm.get('nome').hasError('required') && cadastroForm.get('nome').touched}">
+          <div *ngIf="cadastroForm.get('nome').hasError('required') && cadastroForm.get('nome').touched"
+            class="invalid-feedback">
+            Nome da categoria é obrigatório.
+          </div>
+        </div>
+        <div class="col-lg-5" style="padding-top: 2.8%">
+          <button type="button" class="btn btn-dark" (click)="salvar()">
+            Salvar
+          </button>&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="limpar()">
+            Limpar
+          </button>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container principal">
+  <div class="alert {{classeMensagem}}" role="alert" *ngIf="mensagem && mensagem.length > 0">
+    {{ mensagem }}
+  </div>
+  <h3 class="titulo">Categorias sugeridas pelos usuários</h3>
+  <div class="col-lg-10 inner">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nome da Categoria</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="categorias && categorias.length">
+        <tr *ngFor="let categoria of categorias">
+          <td>{{categoria.nome}}</td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-sm btn-success" tooltip="Aceitar" (click)="aceitar(categoria)">
+                <i class="fa fa-save"></i>
+              </button>&nbsp;
+              <button class="btn btn-sm btn-danger" tooltip="Rejeitar" (click)="rejeitar(categoria.id)">
+                <i class="fa fa-eraser"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="!categorias.length">
+        <tr>
+          <td colspan="7" class="text-center">
+            <h4>
+              Nenhum evento encontrado!
+            </h4>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
