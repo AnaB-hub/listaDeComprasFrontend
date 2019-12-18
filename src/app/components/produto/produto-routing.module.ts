@@ -5,7 +5,7 @@ import { ProdutoComponent } from './cadastro-produto/produto.component';
 
 const routes: Routes = [
   {
-    path: 'cadastro-produto',
+    path: 'operador/cadastro-produto',
     component: ProdutoComponent
   }
 ]

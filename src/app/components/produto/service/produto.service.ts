@@ -14,4 +14,16 @@ export class ProdutoService {
     return this.http.post(`${environment.apiBaseUrl}/produtos`, produto);
   }
 
+  alterar(produto) {
+    return this.http.put(`${environment.apiBaseUrl}/produtos/${produto.id}`, produto);
+  }
+
+  excluir(produtoId) {
+    return this.http.delete(`${environment.apiBaseUrl}/produtos/${produtoId}`);
+  }
+
+  produtos(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/produtos`);
+  }
+
 }

@@ -36,9 +36,49 @@
           </button>&nbsp;
           <button type="button" class="btn btn-secondary" (click)="limpar()">
             Limpar
+          </button>&nbsp;
+          <button type="button" class="btn btn-secondary" (click)="apresentarProdutos()">
+            {{!apresentarLista ? 'Apresentar ' : 'Esconder '}} Lista de produtos
           </button>
         </p>
       </div>
     </form>
+
+    <!-- Listagem de Produtos -->&nbsp;
+    <table class="table table-striped principal" *ngIf="apresentarLista">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Categoria</th>
+          <th>Descrição</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos">
+          <td>{{produto.nome}}</td>
+          <td>{{produto.categoriaDescricao || '-'}}</td>
+          <td>{{produto.descricao || '-'}}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-success" tooltip="Editar"
+              (click)="editar(produto)"><i class="fa fa-edit"></i>
+            </button>&nbsp;
+            <button type="button" class="btn btn-sm btn-danger" tooltip="Excluir"
+              (click)="excluir(produto.id)"><i class="fa fa-eraser"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="!produtos.length">
+        <tr>
+          <td colspan="7" class="text-center">
+            <h4>
+              Nenhum produto encontrado!
+            </h4>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
   </div>
 </div>
