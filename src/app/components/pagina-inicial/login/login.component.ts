@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
       let formulario = this.loginForm.value;
       if (formulario.usuario == 'adm' && formulario.senha == '123456') {
         this.router.navigate(['/adm/cadastro-categoria']);
+      } else if (formulario.usuario == 'op1' && formulario.senha == '123456'){
+        this.router.navigate(['/operador/cadastro-produto']);
       } else {
         this.mensagemParaUsuario('Usuário ou senha inválidos!', false, 3000);
       }

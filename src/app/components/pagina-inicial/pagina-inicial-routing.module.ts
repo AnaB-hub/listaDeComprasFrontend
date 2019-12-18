@@ -13,7 +13,7 @@ const routes: Routes = [
     component: PaginaInicialComponent
   },
   {
-    path: 'adm',
+    path: 'login',
     component: LoginComponent
   }
 ]
