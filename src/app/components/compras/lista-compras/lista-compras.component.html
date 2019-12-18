@@ -1,0 +1,100 @@
+<div class="container principal">
+  <div>
+    <div class="alert {{classeMensagem}}" role="alert" *ngIf="mensagem && mensagem.length > 0">
+      {{ mensagem }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <h3 class="titulo principal">Lista de produtos</h3>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Opções</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="produtos && produtos.length">
+          <tr *ngFor="let produto of produtos">
+            <td>{{produto.nome || '-'}}</td>
+            <td>{{produto.categoriaDescricao || '-'}}</td>
+            <td>{{produto.descricao || '-'}}</td>
+            <td style="text-align: center">
+              <div class="btn-group">
+                <button class="btn btn-sm btn-success" tooltip="Selecionar"
+                  (click)="adicionarItemALista(produto)">
+                  <i class="fa fa-check-circle"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot *ngIf="!produtos.length">
+          <tr>
+            <td colspan="7" class="text-center">
+              <h4>
+                Nenhum produto encontrado!
+              </h4>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="col-lg-6">
+      <h3 class="titulo principal">Sua lista</h3>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Qtde</th>
+            <th>Opções</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="produtos && produtosSelecionados.length">
+          <tr *ngFor="let produto of produtosSelecionados">
+            <td>{{produto.nome || '-'}}</td>
+            <td>{{produto.categoriaDescricao || '-'}}</td>
+            <td>{{produto.descricao || '-'}}</td>
+            <td>{{produto.qtde}}</td>
+            <td style="text-align: center">
+              <div class="btn-group">
+                <button class="btn btn-sm btn-danger" tooltip="Excluir"
+                  (click)="excluir(produto)">
+                  <i class="fa fa-eraser"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot *ngIf="!produtosSelecionados.length">
+          <tr>
+            <td colspan="7" class="text-center">
+              <h4>
+                Sua lista está vazia!
+              </h4>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <form [formGroup]="cadastroForm">
+        <div class="row" *ngIf="produtosSelecionados && produtosSelecionados.length > 0">
+          <div class="form-group col-lg-8">
+            <label>Nome da lista</label>
+            <input class="form-control" type="text" placeholder="Nome da lista" formControlName="nome">
+          </div>
+          <div class="col-lg-4" style="padding-top: 5.8%">
+            <button type="button" class="btn btn-dark" (click)="salvarLista()">
+              Salvar
+            </button>&nbsp;
+            <button type="button" class="btn btn-secondary" (click)="limparLista()">
+              Limpar
+            </button>
+          </div>
+        </div>
+      </form>
+  </div>
+</div>

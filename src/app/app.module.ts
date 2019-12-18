@@ -19,6 +19,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CategoriaRoutingModule } from './components/categoria/categoria-routing.module';
 import { CadastroCategoriaAdmComponent } from './components/categoria/cadastro-categoria-adm/cadastro-categoria-adm.component';
 import { LoginComponent } from './components/pagina-inicial/login/login.component';
+import { ListaCompraRoutingModule } from './components/compras/lista-compra-routing.module';
+import { ListaComprasComponent } from './components/compras/lista-compras/lista-compras.component';
+import { ListagemListaCompraComponent } from './components/compras/listagem-lista-compra/listagem-lista-compra.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { LoginComponent } from './components/pagina-inicial/login/login.componen
     CategoriaComponent,
     FooterComponent,
     CadastroCategoriaAdmComponent,
-    LoginComponent
+    LoginComponent,
+    ListaComprasComponent,
+    ListagemListaCompraComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,8 @@ import { LoginComponent } from './components/pagina-inicial/login/login.componen
     ProdutoRoutingModule,
     CurrencyMaskModule,
     CategoriaRoutingModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    ListaCompraRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
