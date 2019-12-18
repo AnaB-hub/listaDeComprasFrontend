@@ -30,11 +30,9 @@ export class CadastroCategoriaAdmComponent implements OnInit {
     let id = categoria.id;
     categoria.id = null;
     categoria.ativo = true;
-    this.categoriaService.cadastrarCategoria(categoria).subscribe(cat => {
-      console.log(cat);
-      this.mensagemParaUsuario('Categoria cadastrada com sucesso', true, 3000);
-    });
-    await this.excluir(id);
+    let cat = await this.categoriaService.cadastrarCategoria(categoria).toPromise();
+    this.mensagemParaUsuario('Categoria cadastrada com sucesso', true, 3000);
+    await this.excluirCategoriaDaListaSugerida(id);
   }
 
   rejeitar(categoriaId): void {
@@ -52,7 +50,7 @@ export class CadastroCategoriaAdmComponent implements OnInit {
     }, timeout);
   }
 
-  excluir(id) {
+  excluirCategoriaDaListaSugerida(id) {
     this.categoriaService.excluirCategoriaSugerida(id).subscribe(_ => {
       this.carregarCategorias();
     });

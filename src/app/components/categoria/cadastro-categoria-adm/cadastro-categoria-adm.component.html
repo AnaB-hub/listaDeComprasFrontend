@@ -3,18 +3,18 @@
     {{ mensagem }}
   </div>
   <h3 class="titulo">Categorias sugeridas pelos usuários</h3>
-  <div class="col-lg-10 inner">
+  <div class="col-lg-8 inner">
     <table class="table table-striped">
       <thead class="thead-dark">
         <tr>
           <th>Nome da Categoria</th>
-          <th>Opções</th>
+          <th style="text-align: right; padding-right: 34px;">Opções</th>
         </tr>
       </thead>
       <tbody *ngIf="categorias && categorias.length">
         <tr *ngFor="let categoria of categorias">
           <td>{{categoria.nome}}</td>
-          <td>
+          <td style="text-align: right; padding-right: 25px;">
             <div class="btn-group">
               <button class="btn btn-sm btn-success" tooltip="Aceitar" (click)="aceitar(categoria)">
                 <i class="fa fa-save"></i>
@@ -30,7 +30,7 @@
         <tr>
           <td colspan="7" class="text-center">
             <h4>
-              Nenhum evento encontrado!
+              Nenhuma categoria encontrada!
             </h4>
           </td>
         </tr>
