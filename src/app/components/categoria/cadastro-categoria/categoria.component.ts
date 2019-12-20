@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoriaService } from '../service/categoria.service';
 import { Mensagens } from 'src/utils/Mensagens.enum';
+import { CategoriaSugeridaService } from '../service/categoria-sugerida.service';
 
 @Component({
   selector: 'app-categoria',
@@ -20,7 +21,8 @@ export class CategoriaComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: CategoriaService
+    private service: CategoriaService,
+    private categoriaSugeridaService: CategoriaSugeridaService
   ) { }
 
   ngOnInit() {
@@ -37,7 +39,7 @@ export class CategoriaComponent implements OnInit {
 
   salvar(): void {
     if (this.cadastroForm.valid) {
-      this.service.cadastrarCategoriaSugerida(this.cadastroForm.value).subscribe(_ => {
+      this.categoriaSugeridaService.cadastrarCategoriaSugerida(this.cadastroForm.value).subscribe(_ => {
         this.mensagemParaUsuario('Obrigada pela sugestão!', true, 3000);
         this.limpar();
       });

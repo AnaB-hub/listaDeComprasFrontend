@@ -14,16 +14,34 @@ export class ProdutoService {
     return this.http.post(`${environment.apiBaseUrl}/produtos`, produto);
   }
 
+  // JSON SERVE
+  // alterar(produto) {
+  //   return this.http.put(`${environment.apiBaseUrl}/produtos/${produto.id}`, produto);
+  // }
+
+  // Backend com spring
   alterar(produto) {
-    return this.http.put(`${environment.apiBaseUrl}/produtos/${produto.id}`, produto);
+    return this.http.put(`${environment.apiBaseUrl}/produtos`, produto);
   }
 
+  // JSON SERVE
+  // excluir(produtoId) {
+  //   return this.http.delete(`${environment.apiBaseUrl}/produtos/${produtoId}`);
+  // }
+
+  // Backend com spring
   excluir(produtoId) {
-    return this.http.delete(`${environment.apiBaseUrl}/produtos/${produtoId}`);
+    return this.http.get(`${environment.apiBaseUrl}/produtos/delete/${produtoId}`);
   }
 
+  // JSON SERVE - LISTA DE PRODUTOS
+  // produtos(): Observable<any[]> {
+  //   return this.http.get<any[]>(`${environment.apiBaseUrl}/produtos`);
+  // }
+
+  // Backend com spring - LISTA DE PRODUTOS
   produtos(): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/produtos`);
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/produtosAtivos`);
   }
 
 }

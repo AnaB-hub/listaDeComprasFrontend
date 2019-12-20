@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from '../service/categoria.service';
+import { CategoriaSugeridaService } from '../service/categoria-sugerida.service';
 
 @Component({
   selector: 'app-cadastro-categoria-adm',
@@ -14,7 +15,8 @@ export class CadastroCategoriaAdmComponent implements OnInit {
   mensagem: string = '';
 
   constructor(
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private categoriaSugeridaService: CategoriaSugeridaService
   ) { }
 
   ngOnInit() {
@@ -22,7 +24,7 @@ export class CadastroCategoriaAdmComponent implements OnInit {
   }
 
   async carregarCategorias(): Promise<void> {
-    let categorias = await this.categoriaService.carregarCategoriasSugeridas().toPromise();
+    let categorias = await this.categoriaSugeridaService.carregarCategoriasSugeridas().toPromise();
     this.categorias = categorias;
   }
 
@@ -36,7 +38,7 @@ export class CadastroCategoriaAdmComponent implements OnInit {
   }
 
   rejeitar(categoriaId): void {
-    this.categoriaService.excluirCategoriaSugerida(categoriaId).subscribe(_ => {
+    this.categoriaSugeridaService.excluirCategoriaSugerida(categoriaId).subscribe(_ => {
       this.mensagemParaUsuario('Categoria rejeitada com sucesso', false, 5000);
       this.carregarCategorias();
     });
@@ -51,7 +53,7 @@ export class CadastroCategoriaAdmComponent implements OnInit {
   }
 
   excluirCategoriaDaListaSugerida(id) {
-    this.categoriaService.excluirCategoriaSugerida(id).subscribe(_ => {
+    this.categoriaSugeridaService.excluirCategoriaSugerida(id).subscribe(_ => {
       this.carregarCategorias();
     });
   }

@@ -72,8 +72,8 @@ export class ProdutoComponent implements OnInit {
       this.cadastroForm.setValue({
         id: produto.id,
         nome: produto.nome,
-        categoria: produto.categoria,
-        descricao: produto.descricao,
+        categoria: produto.categoria || null,
+        descricao: produto.descricao  || null,
         ativo: produto.ativo
       });
     }
@@ -121,8 +121,8 @@ export class ProdutoComponent implements OnInit {
       if (this.categorias && this.categorias.length > 0) {
         let categoria = this.categorias.find(x => x.id == produtos[i].categoria);
         categoria ? produtos[i].categoriaDescricao = categoria.nome : null;
-        this.produtos.push(produtos[i]);
       }
+      this.produtos.push(produtos[i]);
     }
   }
 

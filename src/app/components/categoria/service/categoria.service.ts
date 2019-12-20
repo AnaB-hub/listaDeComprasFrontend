@@ -10,23 +10,16 @@ export class CategoriaService {
 
   constructor(private http: HttpClient) { }
 
-  // Categoria sugerida
-  cadastrarCategoriaSugerida(categoria) {
-    return this.http.post(`${environment.apiBaseUrl}/categorias-sugeridas`, categoria);
-  }
+  // Categorias cadastradas no sistema - JSON SERVER
+  // categoriasAtivas(): Observable<any[]> {
+  //   return this.http.get<any[]>(`${environment.apiBaseUrl}/categorias`);
+  // }
 
-  carregarCategoriasSugeridas(): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/categorias-sugeridas`);
-  }
-
-  excluirCategoriaSugerida(categoria) {
-    return this.http.delete(`${environment.apiBaseUrl}/categorias-sugeridas/${categoria}`);
-  }
-
-  // Categoria cadastrada no sistema
+  // Categorias cadastradas no sistema - Backend Java
   categoriasAtivas(): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiBaseUrl}/categorias`);
+    return this.http.get<any[]>(`${environment.apiBaseUrl}/categoriasAtivas`);
   }
+
   cadastrarCategoria(categoria) {
     return this.http.post(`${environment.apiBaseUrl}/categorias`, categoria);
   }
