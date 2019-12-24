@@ -6,9 +6,14 @@
   </div>
   <h3 class="titulo">Cadastrar Lista de Compras</h3>
   <div class="row">
-    <div class="form-group col-lg-6">
+    <div class="form-group col-lg-4">
       <label>Filtrar por nome do produto: </label>
       <input type="text" class="form-control" placeholder="Informe o filtro" [(ngModel)]="filtroLista">
+    </div>
+    <div class="form-group col-lg-2" style="margin-top: 31px">
+      <button type="button" class="btn btn-secondary" (click)="limparFiltro()">
+        Limpar filtro
+      </button>
     </div>
   </div>
   <div class="row">

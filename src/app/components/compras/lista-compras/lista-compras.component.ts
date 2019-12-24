@@ -90,6 +90,10 @@ export class ListaComprasComponent implements OnInit {
     }
   }
 
+  limparFiltro(): void {
+    this.filtroLista = '';
+  }
+
   excluir(produto): void {
     if (produto.qtde > 1) {
       let prod = this.produtosSelecionados.find(x => x.nome == produto.nome);
