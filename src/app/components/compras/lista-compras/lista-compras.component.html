@@ -4,9 +4,16 @@
       {{ mensagem }}
     </div>
   </div>
+  <h3 class="titulo">Cadastrar Lista de Compras</h3>
+  <div class="row">
+    <div class="form-group col-lg-6">
+      <label>Filtrar por nome do produto: </label>
+      <input type="text" class="form-control" placeholder="Informe o filtro" [(ngModel)]="filtroLista">
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-6">
-      <h3 class="titulo principal">Lista de produtos</h3>
+      <h4 class="titulo principal descricao">Lista de produtos</h4>
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
@@ -17,14 +24,13 @@
           </tr>
         </thead>
         <tbody *ngIf="produtos && produtos.length">
-          <tr *ngFor="let produto of produtos">
+          <tr *ngFor="let produto of produtosFiltrados">
             <td>{{produto.nome || '-'}}</td>
             <td>{{produto.categoriaDescricao || '-'}}</td>
             <td>{{produto.descricao || '-'}}</td>
             <td style="text-align: center">
               <div class="btn-group">
-                <button class="btn btn-sm btn-success" tooltip="Selecionar"
-                  (click)="adicionarItemALista(produto)">
+                <button class="btn btn-sm btn-success" tooltip="Selecionar" (click)="adicionarItemALista(produto)">
                   <i class="fa fa-check-circle"></i>
                 </button>
               </div>
@@ -43,7 +49,7 @@
       </table>
     </div>
     <div class="col-lg-6">
-      <h3 class="titulo principal">Sua lista</h3>
+      <h4 class="titulo principal descricao">Sua lista{{ nomeLista ? ': ' + nomeLista : null }}</h4>
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
@@ -62,8 +68,7 @@
             <td>{{produto.qtde}}</td>
             <td style="text-align: center">
               <div class="btn-group">
-                <button class="btn btn-sm btn-danger" tooltip="Excluir"
-                  (click)="excluir(produto)">
+                <button class="btn btn-sm btn-danger" tooltip="Excluir" (click)="excluir(produto)">
                   <i class="fa fa-eraser"></i>
                 </button>
               </div>
@@ -84,7 +89,13 @@
         <div class="row" *ngIf="produtosSelecionados && produtosSelecionados.length > 0">
           <div class="form-group col-lg-8">
             <label>Nome da lista</label>
-            <input class="form-control" type="text" placeholder="Nome da lista" formControlName="nome">
+            <input class="form-control" type="text" placeholder="Nome da lista" formControlName="nome"
+              (change)="mudarTituloLista($event.target.value)"
+              [ngClass]="{'is-invalid': cadastroForm.get('nome').hasError('required') && cadastroForm.get('nome').touched}">
+            <div *ngIf="cadastroForm.get('nome').hasError('required') && cadastroForm.get('nome').touched"
+              class="invalid-feedback">
+              Nome da lista é obrigatório.
+            </div>
           </div>
           <div class="col-lg-4" style="padding-top: 5.8%">
             <button type="button" class="btn btn-dark" (click)="salvarLista()">
@@ -96,5 +107,5 @@
           </div>
         </div>
       </form>
+    </div>
   </div>
-</div>
