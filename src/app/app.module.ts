@@ -22,6 +22,7 @@ import { LoginComponent } from './components/pagina-inicial/login/login.componen
 import { ListaCompraRoutingModule } from './components/compras/lista-compra-routing.module';
 import { ListaComprasComponent } from './components/compras/lista-compras/lista-compras.component';
 import { ListagemListaCompraComponent } from './components/compras/listagem-lista-compra/listagem-lista-compra.component';
+import { AprovarProdutoComponent } from './components/produto/aprovar-produto/aprovar-produto.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ListagemListaCompraComponent } from './components/compras/listagem-list
     CadastroCategoriaAdmComponent,
     LoginComponent,
     ListaComprasComponent,
-    ListagemListaCompraComponent
+    ListagemListaCompraComponent,
+    AprovarProdutoComponent
   ],
   imports: [
     BrowserModule,

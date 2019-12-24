@@ -1,0 +1,42 @@
+<div class="container principal">
+  <div class="alert {{classeMensagem}}" role="alert" *ngIf="mensagem && mensagem.length > 0">
+    {{ mensagem }}
+  </div>
+  <h3 class="titulo">Produtos Sugeridos</h3>
+  <div class="col-lg-8 inner">
+    <table class="table table-striped principal">
+      <thead class="thead-dark">
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Categoria</th>
+          <th>Descrição</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos">
+          <td>{{produto.nome}}</td>
+          <td>{{produto.categoriaDescricao || '-'}}</td>
+          <td>{{produto.descricao || '-'}}</td>
+          <td>
+            <button class="btn btn-sm btn-success" tooltip="Aceitar" (click)="aceitar(produto)">
+              <i class="fa fa-save"></i>
+            </button>&nbsp;
+            <button class="btn btn-sm btn-danger" tooltip="Rejeitar" (click)="rejeitar(produto.id)">
+              <i class="fa fa-eraser"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="!produtos.length">
+        <tr>
+          <td colspan="7" class="text-center">
+            <h4>
+              Nenhum produto encontrado!
+            </h4>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
