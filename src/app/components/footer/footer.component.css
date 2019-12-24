@@ -10,4 +10,5 @@
   height: 40px;
   padding: 10px;
   font-size: 0.9em;
+  z-index:1000;
 }
