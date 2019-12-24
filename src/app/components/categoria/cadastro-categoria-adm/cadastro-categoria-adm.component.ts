@@ -39,7 +39,7 @@ export class CadastroCategoriaAdmComponent implements OnInit {
 
   rejeitar(categoriaId): void {
     this.categoriaSugeridaService.excluirCategoriaSugerida(categoriaId).subscribe(_ => {
-      this.mensagemParaUsuario('Categoria rejeitada com sucesso', false, 5000);
+      this.mensagemParaUsuario('Categoria rejeitada com sucesso', true, 5000);
       this.carregarCategorias();
     });
   }
