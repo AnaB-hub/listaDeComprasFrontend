@@ -2,7 +2,13 @@
   <div class="alert {{classeMensagem}}" role="alert" *ngIf="mensagem && mensagem.length > 0">
     {{ mensagem }}
   </div>
-  <h3 class="titulo">Cadastro de Produtos</h3>
+  <h3 class="titulo">Cadastro de Produto</h3>
+  <div class="pagina-inicial descricao">
+    <p>Usuário, você pode sugerir o cadastro de produto, caso não esteja satisfeito com as opções do sistema.
+    Os administradores do sistema são responsáveis por aprovar ou não as sugestões.
+    Caso seja aprovada, em breve seu produto será apresentado como um das opções no Cadastro de lista de compras.</p>
+    <p>Obrigada por colaborar com o SGLC!</p>
+  </div>
   <div class="principal">
     <form [formGroup]="cadastroForm">
       <div class="row">
@@ -19,7 +25,7 @@
           <label>Categoria</label>&nbsp;<i class="fas fa-bug"
             tooltip="Não encontrou a categoria que procurava? Você pode sugerir uma nova.
             Selecione esse ícone, por favor." (click)="sugerirCategoria()"></i>
-          <select class="form-control" formControlName="categoria">
+          <select class="form-control" formControlName="categoriaId">
             <option value="null">Selecione</option>
             <option *ngFor="let cat of categorias" value="{{cat.id}}">{{cat.nome}}</option>
           </select>
@@ -36,49 +42,9 @@
           </button>&nbsp;
           <button type="button" class="btn btn-secondary" (click)="limpar()">
             Limpar
-          </button>&nbsp;
-          <button type="button" class="btn btn-secondary" (click)="apresentarProdutos()">
-            {{!apresentarLista ? 'Apresentar ' : 'Esconder '}} Lista de produtos
           </button>
         </p>
       </div>
     </form>
-
-    <!-- Listagem de Produtos -->&nbsp;
-    <table class="table table-striped principal" *ngIf="apresentarLista">
-      <thead class="thead-dark">
-        <tr>
-          <th>Nome do Produto</th>
-          <th>Categoria</th>
-          <th>Descrição</th>
-          <th>Opções</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let produto of produtos">
-          <td>{{produto.nome}}</td>
-          <td>{{produto.categoriaDescricao || '-'}}</td>
-          <td>{{produto.descricao || '-'}}</td>
-          <td>
-            <button type="button" class="btn btn-sm btn-success" tooltip="Editar"
-              (click)="editar(produto)"><i class="fa fa-edit"></i>
-            </button>&nbsp;
-            <button type="button" class="btn btn-sm btn-danger" tooltip="Excluir"
-              (click)="excluir(produto.id)"><i class="fa fa-eraser"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot *ngIf="!produtos.length">
-        <tr>
-          <td colspan="7" class="text-center">
-            <h4>
-              Nenhum produto encontrado!
-            </h4>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-
   </div>
 </div>
