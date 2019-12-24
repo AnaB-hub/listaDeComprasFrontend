@@ -15,4 +15,8 @@ export class ComprasService {
     return this.http.get<any[]>(`${environment.apiBaseUrl}/compras`);
   }
 
+  cadastrar(lista) {
+    return this.http.post(`${environment.apiBaseUrl}/compras`, lista);
+  }
+
 }

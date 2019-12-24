@@ -3,6 +3,7 @@ import { ProdutoService } from '../../produto/service/produto.service';
 import { CategoriaService } from '../../categoria/service/categoria.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Mensagens } from 'src/utils/Mensagens.enum';
+import { ComprasService } from '../service/compras.service';
 
 @Component({
   selector: 'app-lista-compras',
@@ -28,7 +29,8 @@ export class ListaComprasComponent implements OnInit {
   constructor(
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private service: ComprasService
   ) { }
 
   //encapsulamente: acessa os metodos e não a variavel
@@ -115,7 +117,9 @@ export class ListaComprasComponent implements OnInit {
     if (this.cadastroForm.valid) {
       let lista = this.cadastroForm.value;
       lista.produtos = this.produtosSelecionados;
-      console.log(lista);
+      this.service.cadastrar(lista).subscribe(_ => {
+        this.mensagemParaUsuario('Lista cadastrada com sucesso', true, 3000);
+      });
     } else {
       this.mensagemParaUsuario('O campo Nome da Lista é obrigatório', false, 5000);
     }
