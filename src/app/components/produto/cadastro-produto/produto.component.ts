@@ -68,6 +68,7 @@ export class ProdutoComponent implements OnInit {
   }
 
   mensagemParaUsuario(mensagem: string, sucesso: boolean, timeout: number): void {
+    scrollTo(0, 0);
     sucesso ? this.classeMensagem = 'alert-success' : this.classeMensagem = 'alert-danger';
     this.mensagem = mensagem;
     setTimeout(() => {
