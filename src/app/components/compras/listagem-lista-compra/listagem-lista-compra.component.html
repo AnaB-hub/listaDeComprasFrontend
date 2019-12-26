@@ -1,3 +1,54 @@
-<p>
-  listagem-lista-compra works!
-</p>
+<div class="container" style="padding: 36px;">
+  <!-- <div>
+    <div class="alert {{classeMensagem}}" role="alert" *ngIf="mensagem && mensagem.length > 0">
+      {{ mensagem }}
+    </div>
+  </div> -->
+  <h3 class="titulo">Listas de Compras</h3>
+  <div class="row">
+    <div class="col-lg-10 inner">
+      <div class="row">
+        <p class="col-lg-12 botao">
+          <button type="button" class="btn btn-dark" (click)="mostrarLista = !mostrarLista">
+            Apresentar lista de compras
+          </button>
+        </p>
+      </div>
+      <table class="table table-striped" *ngIf="mostrarLista">
+        <thead class="thead-dark">
+          <tr>
+            <th>Nome da lista</th>
+            <th style="text-align: right; padding-right: 34px;">Opções</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="compras && compras.length">
+          <tr *ngFor="let compra of compras">
+            <td>{{compra.nome || '-'}}</td>
+            <td style="text-align: right; padding-right: 25px;">
+              <div class="btn-group">
+                <button class="btn btn-sm btn-success" tooltip="Abrir">
+                  <i class="fa fa-check-circle"></i>
+                </button>&nbsp;
+                <button class="btn btn-sm btn-danger" tooltip="Excluir">
+                  <i class="fa fa-eraser"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot *ngIf="!compras.length">
+          <tr>
+            <td colspan="7" class="text-center">
+              <h4>
+                Nenhuma lista de compra encontrada!
+              </h4>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+
+  </div>
+</div>

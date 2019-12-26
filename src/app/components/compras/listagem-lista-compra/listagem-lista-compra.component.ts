@@ -10,6 +10,8 @@ export class ListagemListaCompraComponent implements OnInit {
 
   compras: any[] = [];
 
+  mostrarLista: boolean = true;
+
   constructor(
     private service: ComprasService
   ) { }
