@@ -1,4 +1,4 @@
-<div class="container principal">
+<div class="container" style="padding: 36px;">
   <div>
     <div class="alert {{classeMensagem}}" role="alert" *ngIf="mensagem && mensagem.length > 0">
       {{ mensagem }}
@@ -106,7 +106,7 @@
             <button type="button" class="btn btn-dark" (click)="salvarLista()">
               Salvar
             </button>&nbsp;
-            <button type="button" class="btn btn-secondary" (click)="limparLista()">
+            <button type="button" class="btn btn-secondary" (click)="limparLista()" tooltip="Limpar nome e lista">
               Limpar
             </button>
           </div>

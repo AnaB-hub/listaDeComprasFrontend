@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../../produto/service/produto.service';
 import { CategoriaService } from '../../categoria/service/categoria.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Mensagens } from 'src/utils/Mensagens.enum';
 import { ComprasService } from '../service/compras.service';
 
 @Component({
@@ -119,6 +118,7 @@ export class ListaComprasComponent implements OnInit {
       lista.produtos = this.produtosSelecionados;
       this.service.cadastrar(lista).subscribe(_ => {
         this.mensagemParaUsuario('Lista cadastrada com sucesso', true, 3000);
+        this.resetarLista();
       });
     } else {
       this.mensagemParaUsuario('O campo Nome da Lista é obrigatório', false, 5000);
@@ -126,6 +126,7 @@ export class ListaComprasComponent implements OnInit {
   }
 
   mensagemParaUsuario(mensagem: string, sucesso: boolean, timeout: number): void {
+    scrollTo(0, 0);
     sucesso ? this.classeMensagem = 'alert-success' : this.classeMensagem = 'alert-danger';
     this.mensagem = mensagem;
     setTimeout(() => {
@@ -139,6 +140,12 @@ export class ListaComprasComponent implements OnInit {
     } else {
       this.nomeLista = '';
     }
+  }
+
+  resetarLista(): void {
+    this.cadastroForm.reset();
+    this.mudarTituloLista(null);
+    this.produtosSelecionados = [];
   }
 
 }
