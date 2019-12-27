@@ -18,6 +18,8 @@ export class AprovarProdutoComponent implements OnInit {
   categorias: Categoria[] = [];
   classeMensagem: string = 'alert-succes';
   mensagem: string = '';
+  bodyRejeitarProduto: string = '';
+  produto: Produto;
 
   constructor(
     private produtoService: ProdutoService,
@@ -56,11 +58,25 @@ export class AprovarProdutoComponent implements OnInit {
     await this.excluirProdutoDaListaSugerida(id);
   }
 
-  rejeitar(produtoId): void {
-    this.produtoSugeridoService.excluir(produtoId).subscribe(_ => {
-      this.mensagemParaUsuario('Produto rejeitado com sucesso', false, 5000);
-      this.carregarProdutos();
-    });
+  openModal(template: any) {
+    template.show();
+  }
+
+  rejeitar(template): void {
+    if (this.produto) {
+      this.produtoSugeridoService.excluir(this.produto.id).subscribe(_ => {
+        template.hide();
+        this.mensagemParaUsuario('Produto rejeitado com sucesso', true, 5000);
+        this.carregarProdutos();
+        this.produto = new Produto();
+      });
+    }
+  }
+
+  rejeitarProduto(produto: Produto, template: any) {
+    this.openModal(template);
+    this.produto = produto;
+    this.bodyRejeitarProduto = `Tem certeza que deseja rejeitar o produto: ${produto.nome}?`;
   }
 
   mensagemParaUsuario(mensagem: string, sucesso: boolean, timeout: number): void {
