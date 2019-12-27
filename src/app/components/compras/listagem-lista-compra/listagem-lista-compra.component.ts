@@ -14,6 +14,8 @@ export class ListagemListaCompraComponent implements OnInit {
   mostrarLista: boolean = true;
   classeMensagem: string = '';
   mensagem: string = '';
+  bodyExcluirListaCompra: string = '';
+  compra: any;
 
   constructor(
     private service: ComprasService
@@ -30,11 +32,25 @@ export class ListagemListaCompraComponent implements OnInit {
     });
   }
 
-  excluir(id): void {
-    this.service.deletar(id).subscribe(_ => {
-      this.mensagemParaUsuario('Lista excluída com sucesso', true, 3000);
-      this.carregarCompras();
-    });
+  excluir(template): void {
+    if (this.compra) {
+      this.service.deletar(this.compra.id).subscribe(_ => {
+        template.hide();
+        this.mensagemParaUsuario('Lista excluída com sucesso', true, 3000);
+        this.carregarCompras();
+        this.compra = null;
+      });
+    }
+  }
+
+  openModal(template: any) {
+    template.show();
+  }
+
+  excluirLista(compra: any, template: any) {
+    this.openModal(template);
+    this.compra = compra;
+    this.bodyExcluirListaCompra = `Tem certeza que deseja excluir a lista: ${compra.nome}?`;
   }
 
   mensagemParaUsuario(mensagem: string, sucesso: boolean, timeout: number): void {
