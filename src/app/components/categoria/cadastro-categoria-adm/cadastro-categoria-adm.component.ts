@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CategoriaService } from '../service/categoria.service';
 import { CategoriaSugeridaService } from '../service/categoria-sugerida.service';
+import { Categoria } from '../model/categoria';
 
 @Component({
   selector: 'app-cadastro-categoria-adm',
@@ -9,8 +11,8 @@ import { CategoriaSugeridaService } from '../service/categoria-sugerida.service'
 })
 export class CadastroCategoriaAdmComponent implements OnInit {
 
-  categorias: any[] = [];
-
+  // Váriaveis
+  categorias: Categoria[] = [];
   classeMensagem: string = 'alert-succes';
   mensagem: string = '';
 
@@ -53,7 +55,7 @@ export class CadastroCategoriaAdmComponent implements OnInit {
     }, timeout);
   }
 
-  excluirCategoriaDaListaSugerida(id) {
+  excluirCategoriaDaListaSugerida(id): void {
     this.categoriaSugeridaService.excluirCategoriaSugerida(id).subscribe(_ => {
       this.carregarCategorias();
     });

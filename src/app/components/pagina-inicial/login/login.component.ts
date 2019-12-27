@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Mensagens } from 'src/utils/Mensagens.enum';
 import { Router } from '@angular/router';
 
-/**
- *
- */
+import { Mensagens } from 'src/utils/Mensagens.enum';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,8 +11,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  // Formulários
   loginForm: FormGroup;
 
+  // Variáveis
   mensagem: string = '';
   classeMensagem: string = 'alert-success';
 

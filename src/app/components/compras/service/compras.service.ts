@@ -19,4 +19,8 @@ export class ComprasService {
     return this.http.post(`${environment.apiBaseUrl}/compras`, lista);
   }
 
+  deletar(id) {
+    return this.http.delete(`${environment.apiBaseUrl}/compras/${id}`);
+  }
+
 }

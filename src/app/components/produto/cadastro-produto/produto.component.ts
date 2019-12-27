@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { Mensagens } from 'src/utils/Mensagens.enum';
 import { CategoriaService } from '../../categoria/service/categoria.service';
 import { ProdutoSugeridoService } from '../service/produto-sugerido.service';
+import { Categoria } from '../../categoria/model/categoria';
+import { Produto } from '../model/produto';
 
 @Component({
   selector: 'app-produto',
@@ -17,8 +20,8 @@ export class ProdutoComponent implements OnInit {
   //Váriaveis
   mensagem: string = '';
   classeMensagem: string = 'alert-success';
-  categorias: any[] = [];
-  produtos: any[] = [];
+  categorias: Categoria[] = [];
+  produtos: Produto[] = [];
   apresentarLista: boolean = false;
 
   constructor(
@@ -32,7 +35,7 @@ export class ProdutoComponent implements OnInit {
     this.carregarComboCategoria();
   }
 
-  inicializarFormulario() {
+  inicializarFormulario(): void {
     this.cadastroForm = this.formBuilder.group({
       'id': [null],
       'nome': [null, Validators.required],
@@ -63,7 +66,7 @@ export class ProdutoComponent implements OnInit {
     this.cadastroForm.reset();
   }
 
-  sugerirCategoria() {
+  sugerirCategoria(): void {
     window.open('/cadastro-categoria', '_blank');
   }
 

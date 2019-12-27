@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ProdutoSugeridoService } from '../service/produto-sugerido.service';
 import { ProdutoService } from '../service/produto.service';
 import { CategoriaService } from '../../categoria/service/categoria.service';
+import { Produto } from '../model/produto';
+import { Categoria } from '../../categoria/model/categoria';
 
 @Component({
   selector: 'app-aprovar-produto',
@@ -10,9 +13,9 @@ import { CategoriaService } from '../../categoria/service/categoria.service';
 })
 export class AprovarProdutoComponent implements OnInit {
 
-  produtos: any[] = [];
-  categorias: any = [];
-
+  // Variáveis
+  produtos: Produto[] = [];
+  categorias: Categoria[] = [];
   classeMensagem: string = 'alert-succes';
   mensagem: string = '';
 
@@ -27,7 +30,7 @@ export class AprovarProdutoComponent implements OnInit {
     await this.carregarProdutos();
   }
 
-  async carregarListaCategoria() {
+  async carregarListaCategoria(): Promise<void> {
     let categorias = await this.categoriaService.categoriasAtivas().toPromise();
     this.categorias = categorias;
   }
@@ -48,7 +51,7 @@ export class AprovarProdutoComponent implements OnInit {
     let id = produto.id;
     produto.id = null;
     produto.ativo = true;
-    let prod = await this.produtoService.cadastrar(produto).toPromise();
+    await this.produtoService.cadastrar(produto).toPromise();
     this.mensagemParaUsuario('Produto cadastrado com sucesso', true, 3000);
     await this.excluirProdutoDaListaSugerida(id);
   }
@@ -69,7 +72,7 @@ export class AprovarProdutoComponent implements OnInit {
     }, timeout);
   }
 
-  excluirProdutoDaListaSugerida(id) {
+  excluirProdutoDaListaSugerida(id): void {
     this.produtoSugeridoService.excluir(id).subscribe(_ => {
       this.carregarProdutos();
     });

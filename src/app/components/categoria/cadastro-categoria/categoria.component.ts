@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CategoriaService } from '../service/categoria.service';
+
 import { Mensagens } from 'src/utils/Mensagens.enum';
 import { CategoriaSugeridaService } from '../service/categoria-sugerida.service';
 
@@ -11,17 +11,15 @@ import { CategoriaSugeridaService } from '../service/categoria-sugerida.service'
 })
 export class CategoriaComponent implements OnInit {
 
-  //formulário
+  // Formulário
   cadastroForm: FormGroup;
 
-  //Váriaveis
+  // Váriaveis
   mensagem: string = '';
   classeMensagem: string = '';
 
-
   constructor(
     private formBuilder: FormBuilder,
-    private service: CategoriaService,
     private categoriaSugeridaService: CategoriaSugeridaService
   ) { }
 
@@ -29,7 +27,7 @@ export class CategoriaComponent implements OnInit {
     this.inicializarFormulario();
   }
 
-  inicializarFormulario() {
+  inicializarFormulario(): void {
     this.cadastroForm = this.formBuilder.group({
       'id': [null],
       'nome': [null, Validators.required],

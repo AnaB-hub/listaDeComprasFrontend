@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 import { ProdutoService } from '../../produto/service/produto.service';
 import { CategoriaService } from '../../categoria/service/categoria.service';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ComprasService } from '../service/compras.service';
+import { Produto } from '../../produto/model/produto';
+import { Categoria } from '../../categoria/model/categoria';
+import { ProdutoLista } from '../../produto/model/Produto-lista';
 
 @Component({
   selector: 'app-lista-compras',
@@ -11,19 +15,17 @@ import { ComprasService } from '../service/compras.service';
 })
 export class ListaComprasComponent implements OnInit {
 
-  //listas
-  produtos: any[] = [];
-  produtosFiltrados: any[] = [];
-  categorias: any[] = [];
-  produtosSelecionados: any[] = [];
+  //formulário
+  cadastroForm: FormGroup;
 
-  //strings
+  // Variáveis
+  produtos: Produto[] = [];
+  produtosFiltrados: Produto[] = [];
+  categorias: Categoria[] = [];
+  produtosSelecionados: ProdutoLista[] = [];
   classeMensagem: string = 'alert-success';
   mensagem: string ='';
   nomeLista: string = '';
-
-  //formulário
-  cadastroForm: FormGroup;
 
   constructor(
     private produtoService: ProdutoService,
@@ -49,14 +51,14 @@ export class ListaComprasComponent implements OnInit {
     this.produtosFiltrados = this.produtos;
   }
 
-  filtrarProduto(filtrarPor: string){
+  filtrarProduto(filtrarPor: string) {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.produtos.filter(
       produto => produto.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
-  inicializarFormulario() {
+  inicializarFormulario(): void {
     this.cadastroForm = this.formBuilder.group({
       'id': [null],
       'nome': [null, Validators.required],
@@ -134,7 +136,7 @@ export class ListaComprasComponent implements OnInit {
     }, timeout);
   }
 
-  mudarTituloLista(nomeLista) {
+  mudarTituloLista(nomeLista): void {
     if (nomeLista) {
       this.nomeLista = nomeLista;
     } else {
