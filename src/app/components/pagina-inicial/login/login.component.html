@@ -14,7 +14,8 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label class='label-vol'>Usuário: </label>
+                <label class='label-vol'>Usuário </label>&nbsp;
+                <i class="fas fa-exclamation obrigatorio" tooltip="Obrigatório"></i>
                 <input class="form-control" id='usuário' placeholder="Usuário" formControlName="usuario"
                   [ngClass]="{'is-invalid': loginForm.get('usuario').hasError('required') && loginForm.get('usuario').touched}">
                 <div *ngIf="loginForm.get('usuario').hasError('required') && loginForm.get('usuario').touched"
@@ -25,7 +26,8 @@
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <label class='label-vol'>Senha:</label>
+                <label class='label-vol'>Senha</label>&nbsp;
+                <i class="fas fa-exclamation obrigatorio" tooltip="Obrigatório"></i>
                 <input class="form-control" type="password" placeholder="Senha" formControlName="senha"
                   [ngClass]="{'is-invalid': loginForm.get('senha').hasError('required') && loginForm.get('senha').touched}">
                 <div *ngIf="loginForm.get('senha').hasError('required') && loginForm.get('senha').touched"

@@ -13,7 +13,8 @@
     <form [formGroup]="cadastroForm">
       <div class="row">
         <div class="form-group col-lg-6">
-          <label>Nome da categoria</label>
+          <label>Nome da categoria</label>&nbsp;
+          <i class="fas fa-exclamation obrigatorio" tooltip="Obrigatório"></i>
           <input class="form-control" type="text" placeholder="Nome da categoria" formControlName="nome"
             [ngClass]="{'is-invalid': cadastroForm.get('nome').hasError('required') && cadastroForm.get('nome').touched}">
           <div *ngIf="cadastroForm.get('nome').hasError('required') && cadastroForm.get('nome').touched"
