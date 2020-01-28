@@ -95,7 +95,7 @@
           <div class="form-group col-lg-8">
             <label>Nome da lista</label>
             <input class="form-control" type="text" placeholder="Nome da lista" formControlName="nome"
-              (change)="mudarTituloLista($event.target.value)"
+              (keyup)="mudarTituloLista($event.target.value)"
               [ngClass]="{'is-invalid': cadastroForm.get('nome').hasError('required') && cadastroForm.get('nome').touched}">
             <div *ngIf="cadastroForm.get('nome').hasError('required') && cadastroForm.get('nome').touched"
               class="invalid-feedback">
