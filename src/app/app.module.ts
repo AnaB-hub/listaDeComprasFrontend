@@ -23,6 +23,8 @@ import { ListaCompraRoutingModule } from './components/compras/lista-compra-rout
 import { ListaComprasComponent } from './components/compras/lista-compras/lista-compras.component';
 import { ListagemListaCompraComponent } from './components/compras/listagem-lista-compra/listagem-lista-compra.component';
 import { AprovarProdutoComponent } from './components/produto/aprovar-produto/aprovar-produto.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { UsuarioRoutingModule } from './components/usuario/usuario-routing.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { AprovarProdutoComponent } from './components/produto/aprovar-produto/ap
     LoginComponent,
     ListaComprasComponent,
     ListagemListaCompraComponent,
-    AprovarProdutoComponent
+    AprovarProdutoComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { AprovarProdutoComponent } from './components/produto/aprovar-produto/ap
     CurrencyMaskModule,
     CategoriaRoutingModule,
     AlertModule.forRoot(),
-    ListaCompraRoutingModule
+    ListaCompraRoutingModule,
+    UsuarioRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
