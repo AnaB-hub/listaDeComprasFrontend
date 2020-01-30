@@ -15,4 +15,8 @@ export class LoginService {
     return this.http.get<any>(`${environment.apiBaseUrl}/usuario/findByUser/${usuario}`);
   }
 
+  cadastro(usuario) {
+    return this.http.post(`${environment.apiBaseUrl}/usuario`, usuario);
+  }
+
 }

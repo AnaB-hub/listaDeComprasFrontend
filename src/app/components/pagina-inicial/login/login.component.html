@@ -38,8 +38,11 @@
             </div>
           </div>
         </form>&nbsp;
-        <div class="row justify-content-center">
-          <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-12 botao">
+            <button type="submit" class="btn btn-dark" style="margin-right: 142px;" [routerLink]="['/cadastro-usuario']">
+              Cadastre-se
+            </button>
             <button type="submit" class="btn btn-dark" (click)="entrar()">
               Entrar
             </button>&nbsp;
@@ -48,7 +51,18 @@
             </button>
           </div>
         </div>
+        <!-- <div className="row">
+          <div className="col-md-12">
+            <label>Não possui login? Faça seu cadastro agora mesmo!</label>
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <button type="submit"
+              class="btn btn-link">
+              Cadastro de Voluntário
+        </button>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

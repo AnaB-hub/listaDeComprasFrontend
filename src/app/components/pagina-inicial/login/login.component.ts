@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { Mensagens } from 'src/utils/Mensagens.enum';
 import { LoginService } from '../service/login.service';
+import { User } from '../../usuario/model/user';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.removeItem('user');
     this.loginForm = this.formBuilder.group({
       'usuario': [null, Validators.required],
       'senha': [null, Validators.required]
@@ -34,21 +36,18 @@ export class LoginComponent implements OnInit {
 
   entrar(): void {
     if (this.loginForm.valid) {
-      // // TODO quando o login for implementado, retirar o mock
-      // let formulario = this.loginForm.value;
-      // if (formulario.usuario == 'adm' && formulario.senha == '123456') {
-      //   this.router.navigate(['/adm/cadastro-categoria']);
-      // } else if (formulario.usuario == 'op1' && formulario.senha == '123456'){
-      //   this.router.navigate(['/operador/cadastro-produto']);
-      // } else {
-      //   this.mensagemParaUsuario('Usuário ou senha inválidos!', false, 3000);
-      // }
 
       let user = this.loginForm.value;
 
-      this.loginService.usuarioByUser(user.usuario).subscribe(result => {
+      this.loginService.usuarioByUser(user.usuario).subscribe(async result => {
         if (result) {
-          alert('Teste')
+          if (user.senha == result.senha) {
+            let usuario = new User(result.id, result.isAdm, result.isOperador);
+            localStorage.setItem('user', JSON.stringify(usuario));
+            await this.verificarTipoUsuario(usuario);
+          } else {
+            this.mensagemParaUsuario('Senha ou usuário inválidos!', false, 5000);
+          }
         } else {
           this.mensagemParaUsuario('Usuário não encontrado!', false, 5000);
         }
@@ -56,6 +55,17 @@ export class LoginComponent implements OnInit {
 
     } else {
       this.mensagemParaUsuario(Mensagens.CAMPO_OBRIGATORIO, false, 5000);
+    }
+  }
+
+  async verificarTipoUsuario(usuario) {
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (user.isAdm) {
+      this.router.navigate(['/adm/aprovar-produto']);
+    } else if (user.isOperador) {
+      this.router.navigate(['/operador/cadastro-produto']);
+    } else {
+      this.router.navigate(['/cadastrar-lista-de-compra']);
     }
   }
 
