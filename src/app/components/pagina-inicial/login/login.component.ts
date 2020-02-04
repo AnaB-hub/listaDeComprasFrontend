@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Mensagens } from 'src/utils/Mensagens.enum';
 import { LoginService } from '../service/login.service';
 import { User } from '../../usuario/model/user';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -39,17 +40,16 @@ export class LoginComponent implements OnInit {
 
       let user = this.loginForm.value;
 
-      this.loginService.usuarioByUser(user.usuario).subscribe(async result => {
+      this.loginService.usuarioByUser(user.usuario).subscribe(result => {
         if (result) {
-          if (user.senha == result.senha) {
-            let usuario = new User(result.id, result.isAdm, result.isOperador);
-            localStorage.setItem('user', JSON.stringify(usuario));
-            await this.verificarTipoUsuario(usuario);
-          } else {
-            this.mensagemParaUsuario('Senha ou usuário inválidos!', false, 5000);
-          }
+          this.loginService.login({'user': user.usuario, 'senha': user.senha}).subscribe(result => {
+            // console.log(result)
+            // sessionStorage.setItem('LogedUser', result.headers.authorization);
+            // sessionStorage.setItem('UsuarioLogin', user);
+          })
+          // .first((_, index) => index === 0, (response: HttpResponse<any>) => {});
         } else {
-          this.mensagemParaUsuario('Usuário não encontrado!', false, 5000);
+          this.mensagemParaUsuario('Usuário ou Senha inválidos.', false, 5000);
         }
       });
 
