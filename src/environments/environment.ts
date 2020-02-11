@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // apiBaseUrl: 'http://localhost:3000' //json serve
-  apiBaseUrl: 'http://localhost:8080/api' //API Java
+  apiBaseUrl: 'http://localhost:8080/api', //API Java
+  apiLogin: 'http://localhost:8080'
 };
 
 /*

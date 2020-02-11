@@ -21,7 +21,7 @@ export class LoginService {
   }
 
   login(usuario) {
-    return this.http.post<any>(`${environment.teste}/login`, usuario);
+    return this.http.post<any>(`${environment.apiLogin}/login`, usuario);
   }
 
 }
