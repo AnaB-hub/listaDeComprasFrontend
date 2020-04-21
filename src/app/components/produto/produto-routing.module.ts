@@ -3,15 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProdutoComponent } from './cadastro-produto/produto.component';
 import { AprovarProdutoComponent } from './aprovar-produto/aprovar-produto.component';
+import { AuthGuard } from '../auth/auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'operador/cadastro-produto',
-    component: ProdutoComponent
+    component: ProdutoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'adm/aprovar-produto',
-    component: AprovarProdutoComponent
+    component: AprovarProdutoComponent,
+    canActivate: [AuthGuard]
   }
 ]
 

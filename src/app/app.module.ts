@@ -25,6 +25,10 @@ import { ListagemListaCompraComponent } from './components/compras/listagem-list
 import { AprovarProdutoComponent } from './components/produto/aprovar-produto/aprovar-produto.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioRoutingModule } from './components/usuario/usuario-routing.module';
+import { Interceptor } from './components/auth/interceptor.module';
+import { AuthGuard } from './components/auth/auth-guard.service';
+import { AdministradorRoutingModule } from './components/administrador/administrador-routing.module';
+import { AdministradorComponent } from './components/administrador/administrador.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,8 @@ import { UsuarioRoutingModule } from './components/usuario/usuario-routing.modul
     ListaComprasComponent,
     ListagemListaCompraComponent,
     AprovarProdutoComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    AdministradorComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +61,11 @@ import { UsuarioRoutingModule } from './components/usuario/usuario-routing.modul
     CategoriaRoutingModule,
     AlertModule.forRoot(),
     ListaCompraRoutingModule,
-    UsuarioRoutingModule
+    UsuarioRoutingModule,
+    Interceptor,
+    AdministradorRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

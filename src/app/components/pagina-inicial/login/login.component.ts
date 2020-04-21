@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 
 import { Mensagens } from 'src/utils/Mensagens.enum';
 import { LoginService } from '../service/login.service';
-import { User } from '../../usuario/model/user';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -28,38 +26,43 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    localStorage.removeItem('user');
+    this.limparLocalStore();
     this.loginForm = this.formBuilder.group({
       'usuario': [null, Validators.required],
       'senha': [null, Validators.required]
     });
   }
 
+  limparLocalStore() {
+    localStorage.clear();
+  }
+
   entrar(): void {
+    this.limparLocalStore();
     if (this.loginForm.valid) {
-
       let user = this.loginForm.value;
-
       this.loginService.usuarioByUser(user.usuario).subscribe(result => {
         if (result) {
-          this.loginService.login({'user': user.usuario, 'senha': user.senha}).subscribe(result => {
-            // console.log(result)
-            // sessionStorage.setItem('LogedUser', result.headers.authorization);
-            // sessionStorage.setItem('UsuarioLogin', user);
-          })
-          // .first((_, index) => index === 0, (response: HttpResponse<any>) => {});
+          this.loginService.login({ 'user': user.usuario, 'senha': user.senha });
+          this.setarLocalStorage(result);
         } else {
           this.mensagemParaUsuario('Usuário ou Senha inválidos.', false, 5000);
         }
       });
-
     } else {
       this.mensagemParaUsuario(Mensagens.CAMPO_OBRIGATORIO, false, 5000);
     }
   }
 
+  setarLocalStorage(result): void {
+    localStorage.setItem('adm', result.isAdm);
+    localStorage.setItem('operador', result.isOperador);
+    localStorage.setItem('user', result.username);
+    this.mensagemParaUsuario('Usuário ou Senha inválidos.', false, 5000); //Caso os dados informados estejam certos, o user não verá essa mensagem
+  }
+
   async verificarTipoUsuario(usuario) {
-    let user = JSON.parse(localStorage.getItem('user'));
+    let user = JSON.parse(sessionStorage.getItem('user'));
     if (user.isAdm) {
       this.router.navigate(['/adm/aprovar-produto']);
     } else if (user.isOperador) {
