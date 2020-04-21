@@ -4,34 +4,27 @@
     <a class="navbar-brand" [routerLink]="['../']" title="Página Inicial">
       <i class="fas fa-shopping-cart" [routerLink]="['../']" title="Página Inicial">&nbsp;</i>SGLC
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['../cadastrar-lista-de-compra']">Cadastrar Lista de Compra</a>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active active">
+          <a class="nav-link" [routerLink]="['../cadastrar-lista-de-compra']"
+            title="Cadastrar Lista de Compra">Cadastrar Lista de Compra</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['../operador/cadastro-produto']">Cadastrar Produto</a>
+          <a class="nav-link" [routerLink]="['../operador/cadastro-produto']"
+            title="Cadastrar Produto">Cadastrar Produto</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['../lista-de-compra']">Suas Listas de Compra</a>
-        </li>
-        <!-- TODO após a implementação do login, retirar do menu os itens abaixo-->
-        <li class="nav-item active">
-          <a class="nav-link">#############</a>
+          <a class="nav-link" [routerLink]="['../lista-de-compra']"
+            title="Suas Listas de Compra">Suas Listas de Compra</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['../adm/aprovar-produto']">ADM-Aprovar prod</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['../adm/cadastro-categoria']">ADM-Aprovar Cat.</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]="['../login']">LOGIN</a>
+          <a class="nav-link" [routerLink]="['../login']"
+            title="Login/Logout">Login/Logout</a>
         </li>
       </ul>
     </div>
