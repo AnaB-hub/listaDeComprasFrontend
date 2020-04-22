@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.limparLocalStore();
     this.loginForm = this.formBuilder.group({
       'usuario': [null, Validators.required],
       'senha': [null, Validators.required]
