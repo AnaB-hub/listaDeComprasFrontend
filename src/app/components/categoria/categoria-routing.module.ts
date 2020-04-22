@@ -11,7 +11,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'adm/cadastro-categoria',
+    path: 'adm/aprovar-categoria',
     component: CadastroCategoriaAdmComponent,
     canActivate: [AuthGuard]
   }

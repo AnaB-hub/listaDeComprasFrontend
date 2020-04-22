@@ -7,7 +7,7 @@ import { AuthGuard } from '../auth/auth-guard.service';
 
 const routes: Routes = [
   {
-    path: 'operador/cadastro-produto',
+    path: 'adm/cadastro-produto',
     component: ProdutoComponent,
     canActivate: [AuthGuard]
   },
