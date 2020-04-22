@@ -55,8 +55,6 @@ export class LoginComponent implements OnInit {
   }
 
   setarLocalStorage(result): void {
-    localStorage.setItem('adm', result.isAdm);
-    localStorage.setItem('operador', result.isOperador);
     localStorage.setItem('user', result.username);
     this.mensagemParaUsuario('Usuário ou Senha inválidos.', false, 5000); //Caso os dados informados estejam certos, o user não verá essa mensagem
   }
@@ -64,9 +62,7 @@ export class LoginComponent implements OnInit {
   async verificarTipoUsuario(usuario) {
     let user = JSON.parse(sessionStorage.getItem('user'));
     if (user.isAdm) {
-      this.router.navigate(['/adm/aprovar-produto']);
-    } else if (user.isOperador) {
-      this.router.navigate(['/operador/cadastro-produto']);
+      this.router.navigate(['/adm/aprovar-produto']); 
     } else {
       this.router.navigate(['/cadastrar-lista-de-compra']);
     }

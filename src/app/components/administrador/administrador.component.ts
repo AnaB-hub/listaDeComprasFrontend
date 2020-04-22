@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../pagina-inicial/service/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-administrador',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministradorComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.verificarIsAdm();
+  }
+
+  async verificarIsAdm() {
+    let user = localStorage.getItem('user')
+    if (user) {
+      let result = await this.loginService.usuarioByUser(user).toPromise();
+      if (result && result.isAdm)
+        return;
+      else
+        this.router.navigate(['/login']);
+
+    }
   }
 
 }

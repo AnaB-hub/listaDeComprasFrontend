@@ -16,15 +16,26 @@ export class UsuarioComponent implements OnInit {
   //Váriaveis
   mensagem: string = '';
   classeMensagem: string = 'alert-success';
-  
 
+  isAdm: string = '';
+  
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.inicializarFormulario();
+    await this.verificarIsAdm();
+  }
+
+  async verificarIsAdm() {
+    let user = localStorage.getItem('user')
+    if (user) {
+      let result = await this.loginService.usuarioByUser(user).toPromise();
+      if (result)
+        this.isAdm = result.isAdm;
+    }
   }
 
   inicializarFormulario(): void {
@@ -33,7 +44,7 @@ export class UsuarioComponent implements OnInit {
       'usuario': [null, Validators.required],
       'senha': [null, Validators.required],
       'isAdm': [false],
-      'isOperador': [false]
+      'isOperador': [true]
     })
   }
 
